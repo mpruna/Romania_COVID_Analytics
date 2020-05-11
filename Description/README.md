@@ -63,7 +63,7 @@ Refs:
 
 ### Fixed issues:
 
-1 - [X] SSH key must not have write rights:
+- [X] SSH key must not have write rights:
 
 chmod -x .ssh/
 
