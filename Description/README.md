@@ -1,6 +1,4 @@
-### Project Structure
-
-### Project Workflow
+### Project Structure | Project Workflow
 
 ![Image](../Images/worflow.png)
 
