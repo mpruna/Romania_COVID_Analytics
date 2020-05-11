@@ -2,7 +2,7 @@
 
 ### Project Workflow
 
-![Image](Images/worflow.png)
+![Img](../Images/worflow.png)
 
 [Gogs install_link](Goge_Setup.md)
 
