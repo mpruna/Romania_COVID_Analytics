@@ -1,5 +1,9 @@
 ### Project Structure
 
+### Project Workflow
+
+![Img]("Images/worflow.png")
+
 [Gogs install_link](Goge_Setup.md)
 
 ```
