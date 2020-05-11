@@ -65,34 +65,35 @@ There are some extra steps:
 * remote url must be setup in ssh format:
 
 * remote url must be setup in ssh format:
-  ```git remote set-url origin root@localhost:gogs/COVID_Public.git```
+```git remote set-url origin root@localhost:gogs/COVID_Public.git```
+
 * upstream branch must be setup explicitly:
-  ```git push --set-upstream origin master```
-  ```
-     git push
-     fatal: The current branch master has no upstream branch.
-     To push the current branch and set the remote as upstream, use
-     git push --set-upstream origin master
-  ```
+```git push --set-upstream origin master```
+```
+   git push
+   fatal: The current branch master has no upstream branch.
+   To push the current branch and set the remote as upstream, use
+   git push --set-upstream origin master
+```
 * local ssh service must be started:
   
-   ```
-      ssh -i .ssh/id_rsa  localhost:22
-      ssh: Could not resolve hostname localhost:22: Name or service not known
+```
+   ssh -i .ssh/id_rsa  localhost:22
+   ssh: Could not resolve hostname localhost:22: Name or service not known
       
-      ssh -i .ssh/id_rsa  localhost
-      The authenticity of host 'localhost (::1)' can't be established.
-      ECDSA key fingerprint is SHA256:a0toXFLJaL/JKaGZA9A+r5/MKoK1udiikzEd4mqQEvE.
-      Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-      Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
-      PTY allocation request failed on channel 0
-      Hi there, You've successfully authenticated, but Gogs does not provide shell access.
-      If this is unexpected, please log in with password and setup Gogs under another user.
-      Connection to localhost closed.
-    ```
+   ssh -i .ssh/id_rsa  localhost
+   The authenticity of host 'localhost (::1)' can't be established.
+   ECDSA key fingerprint is SHA256:a0toXFLJaL/JKaGZA9A+r5/MKoK1udiikzEd4mqQEvE.
+   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+   Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+   PTY allocation request failed on channel 0
+   Hi there, You've successfully authenticated, but Gogs does not provide shell access.
+   If this is unexpected, please log in with password and setup Gogs under another user.
+   Connection to localhost closed.
+ ```
 
-
-
+Ref:
+  * https://discuss.gogs.io/t/how-to-config-ssh-settings/34
 
 ### DB Setup for gogs
 
