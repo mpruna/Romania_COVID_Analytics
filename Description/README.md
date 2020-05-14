@@ -80,5 +80,12 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
+Due to jenkins/orca interaction I decided to switch to maplotlib for some of the graphs.
 
+Customize matplotlib graphs ( increase line plots size/legend/labels)
+
+* https://stackoverflow.com/questions/42758897/change-line-width-of-lines-in-matplotlib-pyplot-legend
+* https://matplotlib.org/tutorials/introductory/usage.html#sphx-glr-tutorials-introductory-usage-py
+* https://stackoverflow.com/questions/332289/how-do-you-change-the-size-of-figures-drawn-with-matplotlib
+* https://matplotlib.org/3.1.3/tutorials/intermediate/tight_layout_guide.html
  
