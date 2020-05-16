@@ -65,6 +65,11 @@ Refs:
 * https://ramiro.org/notebook/geopandas-choropleth/
 * https://matplotlib.org/3.1.0/tutorials/intermediate/gridspec.html#sphx-glr-tutorials-intermediate-gridspec-py
 
+**Plotly object go instalation**
+
+* https://plotly.com/python/getting-started/
+
+
 ### Fixed issues:
 
 - [X] SSH key must not have write rights:
@@ -97,24 +102,24 @@ Customize matplotlib graphs ( increase line plots size/legend/labels)
  ```
  conda create -n project_env python=3.7
  49  conda activate project_env
-   50  conda install pandas
-   51  conda install matplotlib
-   52  conda install pill
-   53   conda install -c anaconda pillow 
-   54  conda install -c plotly plotly-orca==1.2.1 psutil requests
-   57  /var/lib/jenkins/.conda/envs/project_env/bin/orca
-   58  /var/lib/jenkins/.conda/envs/project_env/bin/./orca
-   59  sudo /var/lib/jenkins/.conda/envs/project_env/bin/orca
-   60  conda install geopandas
-   67  conda install -c plotly plotly-orca==1.2.1 psutil requests
-   68  conda install -c plotly plotly=4.7.1
-   70  conda install prophet
-   71   conda install -c conda-forge fbprophet 
-   75  conda install mapclassify
-   89  conda env list
-  509  conda env list
-  510  conda activate project_env
-  512  conda env export | grep -v "^prefix: " > environment.yml
+ 50  conda install pandas
+ 51  conda install matplotlib
+ 52  conda install pill
+ 53   conda install -c anaconda pillow 
+ 54  conda install -c plotly plotly-orca==1.2.1 psutil requests
+ 57  /var/lib/jenkins/.conda/envs/project_env/bin/orca
+ 58  /var/lib/jenkins/.conda/envs/project_env/bin/./orca
+ 59  sudo /var/lib/jenkins/.conda/envs/project_env/bin/orca
+ 60  conda install geopandas
+ 67  conda install -c plotly plotly-orca==1.2.1 psutil requests
+ 68  conda install -c plotly plotly=4.7.1
+ 70  conda install prophet
+ 71   conda install -c conda-forge fbprophet 
+ 75  conda install mapclassify
+ 89  conda env list
+ 509  conda env list
+ 510  conda activate project_env
+ 512  conda env export | grep -v "^prefix: " > environment.yml
 ```
 
 - [x] Initially geopandas was not able to read **romania-counties.json**
