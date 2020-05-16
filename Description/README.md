@@ -89,3 +89,37 @@ Customize matplotlib graphs ( increase line plots size/legend/labels)
 * https://stackoverflow.com/questions/332289/how-do-you-change-the-size-of-figures-drawn-with-matplotlib
 * https://matplotlib.org/3.1.3/tutorials/intermediate/tight_layout_guide.html
  
+ - [X] Jenkins was not able to execute analytics script due to plotly orca interaction
+ 
+ Orca is a service use by Jenkins to save plots as images.
+ Way around this is to create an project enviroment and activate it:
+ 
+ ```
+ conda create -n project_env python=3.7
+ 49  conda activate project_env
+   50  conda install pandas
+   51  conda install matplotlib
+   52  conda install pill
+   53   conda install -c anaconda pillow 
+   54  conda install -c plotly plotly-orca==1.2.1 psutil requests
+   57  /var/lib/jenkins/.conda/envs/project_env/bin/orca
+   58  /var/lib/jenkins/.conda/envs/project_env/bin/./orca
+   59  sudo /var/lib/jenkins/.conda/envs/project_env/bin/orca
+   60  conda install geopandas
+   67  conda install -c plotly plotly-orca==1.2.1 psutil requests
+   68  conda install -c plotly plotly=4.7.1
+   70  conda install prophet
+   71   conda install -c conda-forge fbprophet 
+   75  conda install mapclassify
+   89  conda env list
+  509  conda env list
+  510  conda activate project_env
+  512  conda env export | grep -v "^prefix: " > environment.yml
+```
+
+- [x] Initially geopandas was not able to read **romania-counties.json**
+
+Fixed it by creating a *.csv file and reading it with pansas. This workaround is not needed anymore as jenkins conda enviroment works ok.
+
+- [ ] Jenkins SSH setup Git push build job
+ 
