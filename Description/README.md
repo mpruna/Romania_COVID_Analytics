@@ -142,4 +142,12 @@ home="/var/lib/jenkins/workspace/CI_PUSH/code"
 $py $home/analytics.py
 ```
  
- 
+ PUSH
+ ```
+ SHELL="/bin/bash"
+#home="/workspace/CI_PUSH/Images"
+cp -r /var/lib/jenkins/workspace/CI_PUSH/Images Images/
+git add Images
+git commit -a -m "update statistics"
+git push origin master
+```
