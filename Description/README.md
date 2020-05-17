@@ -128,3 +128,26 @@ Fixed it by creating a *.csv file and reading it with pansas. This workaround is
 
 - [ ] Jenkins SSH setup Git push build job
  
+ ### Jenkins Jobs
+ 
+ Analytics
+ 
+ ```
+ SHELL=/bin/bash
+py="/home/anaconda3/envs/py37_covidenv/bin/python"
+$bash
+echo 'conda activate project_env'
+home="/var/lib/jenkins/workspace/CI_PUSH/code"
+#base_dir="/var/lib/jenkins/workspace"
+$py $home/analytics.py
+```
+ 
+ PUSH
+ ```
+ SHELL="/bin/bash"
+#home="/workspace/CI_PUSH/Images"
+cp -r /var/lib/jenkins/workspace/CI_PUSH/Images Images/
+git add Images
+git commit -a -m "update statistics"
+git push origin master
+```
