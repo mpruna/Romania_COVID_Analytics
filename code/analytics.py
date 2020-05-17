@@ -5,11 +5,17 @@
 ### Import Libraries ###
 import pandas as pd
 import json
-import geopandas as gdf
+#import geopandas as gdf
 import matplotlib.pyplot as plt
 import os
+import geopandas as gdf
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
+import plotly.io
+import plotly.offline as offline
+
+plotly.io.orca.config.executable="/home/anaconda3/envs/py37_covidenv/bin/orca"
+plotly.io.orca.config.save()
 
 
 '''Init prophet model'''
@@ -20,11 +26,10 @@ m = Prophet()
 import warnings
 warnings.filterwarnings('ignore')
 
-gdf.crs="EPSG:31700"
+#gdf.crs="EPSG:31700"
 
-
-def read_data():
-	data_dir=os.path.join(os.path.dirname(os.getcwd()),"datasets/")
+def read_data(data_dir):
+	#data_dir=os.path.join(os.path.dirname(os.getcwd()),"datasets/")
 	file_list=[]
 	for file in os.listdir(data_dir):
 		if file.endswith("json") and "romania-counties" not in file:
@@ -58,15 +63,25 @@ def read_data():
 	return df_list
 
 
-def add_geodata(df1):
-	code_dir = os.path.join(os.path.dirname(os.getcwd()), "code/")
+def add_geodata(df1,code_dir):
+	#code_dir = os.path.join(os.path.dirname(os.getcwd()), "code/")
 	os.chdir(code_dir)
 
 	ro_map1=gdf.read_file('romania-counties.json')
+	'''
+	>>> df=pd.read_csv("romania-counties.csv")
+	>>> data=gpd.Dataframe(df)
+	Traceback (most recent call last):
+  	File "<stdin>", line 1, in <module>
+	AttributeError: module 'geopandas' has no attribute 'Dataframe'
+	>>> data=gpd.GeoDataFrame(df,crs='epsg:4326')
+	>>> data
+	'''
+	#df=pd.read_csv('romania-counties.csv')
+	#ro_map1=gdf.GeoDataFrame(df,crs="epsg:4326")
 	ro_map1['NAME_1']=ro_map1['NAME_1'].str.upper()
 	ro_map1.drop(columns=['id','NL_NAME_1','VARNAME_1'],inplace=True)
-	ro_map1['NAME_1'].replace({"BUCHAREST":"BUCUREȘTI"},inplace=True)
-	
+	ro_map1['NAME_1'].replace({"BUCHAREST":"BUCUREȘTI"},inplace=True)	
 	total=ro_map1.merge(df1,left_on='NAME_1',right_on="county")
 	total.drop(columns=['county'],inplace=True)
 
@@ -112,7 +127,7 @@ def plot_map(total,col):
 	cmap = 'Blues'
 	figsize = (16, 10)
 	total.plot(figsize=figsize, column=col, cmap=cmap, scheme='quantiles', k=colors, legend=True)
-	plt.axis('off')
+	#plt.axis('off')
 
 
 def scatter_plot(x, y1, y2, y3):
@@ -144,8 +159,15 @@ def plot_table(df):
 
 ### Main ###
 def main():
-	img_dir=os.path.join(os.path.dirname(os.getcwd()),"Images/")
-	df_list=read_data()
+
+	home_dir="/var/lib/jenkins/workspace/CI_PUSH"
+	data_dir=os.path.join(home_dir,"datasets/")
+	img_dir=os.path.join(home_dir,"Images/")
+	code_dir=os.path.join(home_dir,"code/")
+
+
+	#img_dir=os.path.join(os.path.dirname(os.getcwd()),"Images/")
+	df_list=read_data(data_dir)
 
 	print(df_list)
 	df_ts=df_list[1]
@@ -153,15 +175,19 @@ def main():
 	fig=scatter_plot(x, y1, y2, y3)
 
 	fig.write_image(os.path.join(img_dir,"covid_timeseries.png"))
+	#plotly.offline.plot(fig, filename='covid_timeseries.png')
+	#offline.plot(fig,auto_open=False, image = 'png', image_filename='covid_timeseries.png')
 
 	df_ts=fit_4fbprohpet(df_ts)
 	df_ts=forecast_model(df_ts)
 
 	fig=trend_plots(df_ts,title="Romania future trends")
 	fig.write_image(os.path.join(img_dir,"covid_trends.png"))
+	#plotly.offline.plot(fig, filename='covid_trends.png')
+	#offline.plot(fig,auto_open=False, image = 'png', image_filename='covid_trends.png')
 
 	df1=df_list[0]
-	total=add_geodata(df1)
+	total=add_geodata(df1,code_dir)
 	
 	for c in ['total_county','total_healed','total_dead']:
 		plot_map(total,col=c)
@@ -171,10 +197,14 @@ def main():
 	df=df1[df1.columns[1:]]
 	fig=plot_table(df)
 	fig.write_image((os.path.join(img_dir,"county_numbers.png")))
-	
+	#plotly.offline.plot(fig, filename="county_numbers.png")
+	#offline.plot(fig,auto_open=False, image = 'png', image_filename='country_numbers.png')
+
 	df=get_statistics(df1)
 	fig=plot_table(df)
 	fig.write_image(os.path.join(img_dir,"general_stats.png"))
+	#plotly.offline.plot(fig, filename="general_stats.png")
+	#offline.plot(fig,auto_open=False, image = 'png', image_filename='general_stats.png')
 
 
 if __name__=="__main__":
