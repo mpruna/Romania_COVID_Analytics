@@ -149,7 +149,7 @@ pydaemonize==0.2
 PyDispatcher==2.0.5
 pyee==7.0.1
 pygeocoder==1.2.5
-Pygments==2.6.1
+Pygments==2.7.4
 PyHamcrest==2.0.2
 PyJWT==1.7.1
 PyMeeus==0.3.7
