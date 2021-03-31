@@ -101,7 +101,7 @@ kiwisolver==1.2.0
 lazy-object-proxy==1.4.3
 lockfile==0.12.2
 LunarCalendar==0.0.9
-lxml==4.5.0
+lxml==4.6.3
 Mako==1.1.2
 mapclassify==2.2.0
 Markdown==2.6.11
