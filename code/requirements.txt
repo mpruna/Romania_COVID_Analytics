@@ -151,7 +151,7 @@ pyee==7.0.1
 pygeocoder==1.2.5
 Pygments==2.6.1
 PyHamcrest==2.0.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyMeeus==0.3.7
 pyOpenSSL==19.1.0
 pyparsing==2.4.6
