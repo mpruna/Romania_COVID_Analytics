@@ -17,7 +17,7 @@ GDAL==2.3.3
 geopandas==0.6.1
 holidays==0.10.2
 idna==2.9
-joblib==0.14.1
+joblib==1.2.0
 kiwisolver==1.2.0
 korean-lunar-calendar==0.2.1
 LunarCalendar==0.0.9
